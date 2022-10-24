@@ -41,5 +41,5 @@ jobs:
       with:
         arguments: publish
       env:
-        USERNAME: david
-        TOKEN: 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
+        TESTUSER: davisusanibar
+        TESTPASS: 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
