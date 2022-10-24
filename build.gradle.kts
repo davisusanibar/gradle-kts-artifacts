@@ -21,18 +21,18 @@ allprojects {
         }
 
         repositories {
-            maven {
-                name = "nexus"
-                val url = "http://localhost:8081/repository/maven-snapshots/"
-                isAllowInsecureProtocol = true
-                setUrl {
-                    url
-                }
-                credentials {
-                    username = "admin"
-                    password = "admin"
-                }
-            }
+//            maven {
+//                name = "nexus"
+//                val url = "http://localhost:8081/repository/maven-snapshots/"
+//                isAllowInsecureProtocol = true
+//                setUrl {
+//                    url
+//                }
+//                credentials {
+//                    username = "admin"
+//                    password = "admin"
+//                }
+//            }
             maven {
                 name = "GitHubPackages"
                 val url = "https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts"
