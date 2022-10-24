@@ -33,6 +33,14 @@ allprojects {
                     password = "admin"
                 }
             }
+            maven {
+                name = "GitHubPackages"
+                url = "https://maven.pkg.github.com/davisusanibar/gradle-01"
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
         }
 
         tasks.withType<GenerateModuleMetadata> {
