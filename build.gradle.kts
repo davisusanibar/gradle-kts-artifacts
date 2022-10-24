@@ -24,8 +24,8 @@ allprojects {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts")
                 credentials {
-                    username = "davisusanibar"
-                    password = "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"
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
                 }
             }
         }
