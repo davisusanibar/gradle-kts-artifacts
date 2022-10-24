@@ -42,4 +42,4 @@ jobs:
         arguments: publish
       env:
         TESTUSER: davisusanibar
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${{ secrets.KTS_TOKEN }}
