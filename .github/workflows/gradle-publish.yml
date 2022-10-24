@@ -42,4 +42,4 @@ jobs:
         arguments: publish
       env:
         USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.java-artifact-token }}
+        TOKEN: ${{ secrets.KTS_TOKEN }}
