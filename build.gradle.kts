@@ -19,35 +19,15 @@ allprojects {
                 from(components["java"])
             }
         }
-
         repositories {
-//            maven {
-//                name = "nexus"
-//                val url = "http://localhost:8081/repository/maven-snapshots/"
-//                isAllowInsecureProtocol = true
-//                setUrl {
-//                    url
-//                }
-//                credentials {
-//                    username = "admin"
-//                    password = "admin"
-//                }
-//            }
             maven {
                 name = "GitHubPackages"
-                val url = "https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts"
-                setUrl {
-                    url
-                }
+                url = uri("https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts")
                 credentials {
                     username = System.getenv("USERNAME")
                     password = System.getenv("TOKEN")
                 }
             }
-        }
-
-        tasks.withType<GenerateModuleMetadata> {
-            enabled = false;
         }
     }
 }
