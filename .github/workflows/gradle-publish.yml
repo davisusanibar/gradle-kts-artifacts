@@ -41,5 +41,5 @@ jobs:
       with:
         arguments: publish
       env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.KTS_TOKEN }}
+        USERNAME: david
+        TOKEN: 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
