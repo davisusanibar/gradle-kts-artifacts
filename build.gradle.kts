@@ -46,6 +46,4 @@ allprojects {
 }
 
 release {
-    versionPropertyFile = 'gradle.properties'
-    versionProperties = ['version', 'mainversion']
 }
