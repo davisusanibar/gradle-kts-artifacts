@@ -44,3 +44,11 @@ allprojects {
         }
     }
 }
+
+release {
+    val failOnCommitNeeded = false
+    val failOnPublishNeeded = false
+    val failOnSnapshotDependencies = false
+    val failOnUnversionedFiles = false
+    val failOnUpdateNeeded = false
+}
