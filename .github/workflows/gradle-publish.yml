@@ -11,6 +11,20 @@ name: Publish package to GitHub Packages
 on:
   release:
     types: [created]
+  workflow_dispatch:
+    inputs:
+      nexus_package:
+        description: Publish to Nexus Packages
+        required: false
+        default: '1'
+      github_package:
+        description: Publish to GitHub Packages
+        required: false
+        default: '0'
+      github_nexus_package:
+        description: Publish to GitHub & Nexus Packages
+        required: false
+        default: '0'
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -25,9 +39,27 @@ jobs:
           distribution: 'temurin'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      - name: Publish package
+      - name: Publish package to Nexus Packages
+        if: ${{ github.event.inputs.nexus_package == '1' }}
+        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+        with:
+          arguments: publish
+        env:
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+      - name: Publish package to GitHub Packages
+        if: ${{ github.event.inputs.github_package == '1' }}
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish package to GitHub & Nexus Packages
+        if: ${{ github.event.inputs.github_nexus_package == '1' }}
+        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+        with:
+          arguments: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
