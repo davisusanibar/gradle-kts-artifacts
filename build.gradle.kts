@@ -1,6 +1,7 @@
 plugins {
     java
     `maven-publish`
+    id("net.researchgate.release") version "3.0.2"
 }
 
 group = "org.ddsa"
@@ -31,8 +32,9 @@ allprojects {
             }
             maven {
                 name = "NexusRepository"
-                def type = version.endsWith("SNAPSHOT") ? "snapshots" : "releases"
-                url = uri("http://localhost:8081/repository/maven-${type}")
+                // def type = version.endsWith("SNAPSHOT") ? "snapshots" : "releases"
+                // url = uri("http://localhost:8081/repository/maven-${type}")
+                url = uri("http://localhost:8081/repository/maven-snapshots")
                 isAllowInsecureProtocol = true
                 credentials {
                     username = System.getenv("NEXUS_USERNAME")
