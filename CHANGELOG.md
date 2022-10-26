@@ -1,6 +1,13 @@
 Release Notes
 ---
 
+## [0.0.1](https://github.com/davisusanibar/gradle-kts-artifacts/compare/v0.0.0...v0.0.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* **pencil:** change 003 ([410c564](https://github.com/davisusanibar/gradle-kts-artifacts/commit/410c564a3de4bc1f30c915da287f31a4b7912ab7))
+
 ## 1.0.0 (2022-10-26)
 
 
