@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        submodules: recursive      
+        submodules: recursive
     - uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm: '22.0.0.2'
@@ -44,7 +44,7 @@ jobs:
       run: gradle nativeImage
     - name: Smoke Test
       run: ./isthmus/src/test/script/smoke.sh
-           ./isthmus/src/test/script/tpch_smoke.sh
+        ./isthmus/src/test/script/tpch_smoke.sh
     - name: Rename the artifact to OS-unique name
       shell: bash
       run: |

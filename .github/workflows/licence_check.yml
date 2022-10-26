@@ -12,5 +12,5 @@ jobs:
 
     - name: Check License Header
       uses: enarx/spdx@master
-      with: 
-        licenses: Apache-2.0 MIT 
+      with:
+        licenses: Apache-2.0 MIT
