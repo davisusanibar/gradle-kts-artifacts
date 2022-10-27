@@ -5,6 +5,19 @@ on:
 #    # 2 AM on Sunday
 #    - cron: "0 2 * * 0"
   workflow_dispatch:
+    inputs:
+      nexus_package:
+        description: Publish to Nexus Packages
+        required: false
+        default: '0'
+      github_package:
+        description: Publish to GitHub Packages
+        required: false
+        default: '0'
+      github_nexus_package:
+        description: Publish to GitHub & Nexus Packages
+        required: false
+        default: '0'
 
 # we do not want more than one release workflow executing at the same time, ever
 concurrency:
