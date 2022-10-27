@@ -1,6 +1,14 @@
 Release Notes
 ---
 
+## [0.3.0](https://github.com/davisusanibar/gradle-kts-artifacts/compare/v0.2.0...v0.3.0) (2022-10-27)
+
+
+### Features
+
+* update ci + repository v5 ([41596ba](https://github.com/davisusanibar/gradle-kts-artifacts/commit/41596baa83fed0d4c57c53ee4aa7735b6838b574))
+* update ci + repository v6 ([b78c28b](https://github.com/davisusanibar/gradle-kts-artifacts/commit/b78c28b14e0a7b8be22932448cab75842c1bc756))
+
 ## [0.2.0](https://github.com/davisusanibar/gradle-kts-artifacts/compare/v0.1.0...v0.2.0) (2022-10-27)
 
 
