@@ -25,11 +25,11 @@ allprojects {
         repositories {
             maven {
                 name = "GITHUB"
-                val releasesRepoUrl = System.getenv("REPO_GITHUB_URL").takeUnless { it.isNullOrEmpty() } ?: extra["REPO_GITHUB_URL"].toString()
+                val releasesRepoUrl = System.getenv("GITHUB_URL").takeUnless { it.isNullOrEmpty() } ?: extra["GITHUB_URL"].toString()
                 url = uri(releasesRepoUrl)
                 credentials {
-                    username = System.getenv("REPO_GITHUB_USERNAME").takeUnless { it.isNullOrEmpty() } ?: extra["REPO_GITHUB_USERNAME"].toString()
-                    password = System.getenv("REPO_GITHUB_PASSWORD").takeUnless { it.isNullOrEmpty() } ?: extra["REPO_GITHUB_PASSWORD"].toString()
+                    username = System.getenv("GITHUB_ACTOR").takeUnless { it.isNullOrEmpty() } ?: extra["GITHUB_ACTOR"].toString()
+                    password = System.getenv("GITHUB_TOKEN").takeUnless { it.isNullOrEmpty() } ?: extra["GITHUB_TOKEN"].toString()
                 }
             }
             maven {
