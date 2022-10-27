@@ -55,3 +55,42 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 ````
+
+GPG
+```shell
+$ gpg --full-generate-key
+$ gpg --list-keys --keyid-format LONG
+/Users/dsusanibar/.gnupg/pubring.kbx
+------------------------------------
+pub   ed25519/XXXXXXXXXXXXXXX 2022-11-02 [SC] [expires: 2024-11-01]
+      YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+uid                 [ultimate] David Dali Susanibar Arce <dsusanibara@uni.pe>
+sub   cv25519/ZZZZZZZZZZZZZZZZ 2022-11-02 [E] [expires: 2024-11-01]
+
+$ gpg --keyring secring.gpg --export-secret-key XXXXXXXX > ~/.gnupg/secring.gpg
+$ gpg --keyring secring.gpg --export-secret-key C9D32C35 > ~/.gnupg/secring.gpg
+
+
+$ gpg --armor --export 0804BDA3C9D32C35
+```
+
+```shell
+signing.keyId=1A2345F8
+signing.password=
+signing.secretKeyRingFile=/Users/jwilson/.gnupg/secring.gpg
+```
+
+```shell
+Export Public Key
+This command will export an ascii armored version of the public key:
+gpg --output public.pgp --armor --export username@email
+
+Export Secret Key
+This command will export an ascii armored version of the secret key:
+gpg --output private.pgp --armor --export-secret-key username@email
+```
+
+
+gpg --keyring secring.gpg --export-secret-keys > ~/.gnupg/secring.gpg
+
+gpg --keyring secringv3.gpg --export-secret-keys > ~/.gnupg/secringv3.gpg
