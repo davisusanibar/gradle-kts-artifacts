@@ -1,14 +1,12 @@
 plugins {
     java
     `maven-publish`
-    id("net.researchgate.release") version "3.0.2"
 }
 
 group = "org.ddsa"
 version = "${version}"
 
 dependencies {
-
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }
@@ -20,8 +18,6 @@ allprojects {
                 from(components["java"])
             }
         }
-        System.out.println("-------")
-        System.out.println(version)
         repositories {
             maven {
                 name = "GITHUB"
