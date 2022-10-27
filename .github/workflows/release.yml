@@ -49,10 +49,10 @@ jobs:
       packages: write
     steps:
       - name: Print branch version
-        run: echo v${{ steps.semanticrelease.outputs.new-release-version }}
+        run: echo v${{ needs.semantic-release.outputs.new-release-version }}
       - uses: actions/checkout@v3
         with:
-          ref: v${{ steps.semanticrelease.outputs.new-release-version }}
+          ref: v${{ needs.semantic-release.outputs.new-release-version }}
       - uses: actions/setup-java@v3
         with:
           java-version: '11'
@@ -63,7 +63,7 @@ jobs:
         if: ${{ github.event.inputs.nexus_package == '1' }}
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: publish -Pversion=${{ steps.semanticrelease.outputs.new-release-version }}
+          arguments: publish -Pversion=${{ needs.semantic-release.outputs.new-release-version }}
         env:
           NEXUS_URL: https://f59f-191-97-56-158.ngrok.io/repository
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
@@ -73,7 +73,7 @@ jobs:
         if: ${{ github.event.inputs.github_package == '1' }}
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: publish -Pversion=${{ steps.semanticrelease.outputs.new-release-version }}
+          arguments: publish -Pversion=${{ needs.semantic-release.outputs.new-release-version }}
         env:
           GITHUB_URL: https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,7 +81,7 @@ jobs:
         if: ${{ github.event.inputs.github_nexus_package == '1' }}
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: publish -Pversion=${{ steps.semanticrelease.outputs.new-release-version }}
+          arguments: publish -Pversion=${{ needs.semantic-release.outputs.new-release-version }}
         env:
           GITHUB_URL: https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
