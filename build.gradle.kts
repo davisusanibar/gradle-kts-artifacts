@@ -7,7 +7,6 @@ plugins {
 group = "org.ddsa"
 version = "${version}"
 
-
 dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
@@ -21,24 +20,28 @@ allprojects {
                 from(components["java"])
             }
         }
+        System.out.println("-------")
+        System.out.println(version)
         repositories {
             maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts")
+                name = "GITHUB"
+                val releasesRepoUrl = System.getenv("REPO_GITHUB_URL").takeUnless { it.isNullOrEmpty() } ?: extra["REPO_GITHUB_URL"].toString()
+                url = uri(releasesRepoUrl)
                 credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
+                    username = System.getenv("REPO_GITHUB_USERNAME").takeUnless { it.isNullOrEmpty() } ?: extra["REPO_GITHUB_USERNAME"].toString()
+                    password = System.getenv("REPO_GITHUB_PASSWORD").takeUnless { it.isNullOrEmpty() } ?: extra["REPO_GITHUB_PASSWORD"].toString()
                 }
             }
             maven {
-                name = "NexusRepository"
-                // def type = version.endsWith("SNAPSHOT") ? "snapshots" : "releases"
-                // url = uri("http://localhost:8081/repository/maven-${type}")
-                url = uri("http://localhost:8081/repository/maven-snapshots")
-                isAllowInsecureProtocol = true
+                name = "NEXUS"
+                val nexusUrl = System.getenv("NEXUS_URL").takeUnless { it.isNullOrEmpty() } ?: extra["NEXUS_URL"].toString()
+                val releasesRepoUrl = nexusUrl + "/maven-releases"
+                val snapshotsRepoUrl = nexusUrl + "/maven-snapshots"
+                url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+                isAllowInsecureProtocol = System.getenv().containsKey("NEXUS_INSECURE").takeUnless { it == false } ?: extra["NEXUS_INSECURE"].toString().toBoolean()
                 credentials {
-                    username = System.getenv("NEXUS_USERNAME")
-                    password = System.getenv("NEXUS_PASSWORD")
+                    username = System.getenv("NEXUS_USERNAME").takeUnless { it.isNullOrEmpty() } ?: extra["NEXUS_USERNAME"].toString()
+                    password = System.getenv("NEXUS_PASSWORD").takeUnless { it.isNullOrEmpty() } ?: extra["NEXUS_PASSWORD"].toString()
                 }
             }
         }

@@ -45,21 +45,29 @@ jobs:
         with:
           arguments: publish
         env:
+          NEXUS_URL: https://f59f-191-97-56-158.ngrok.io/repository
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          NEXUS_INSECURE: false
       - name: Publish package to GitHub Packages
         if: ${{ github.event.inputs.github_package == '1' }}
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_GITHUB_URL: https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts
+          REPO_GITHUB_USERNAME: ${{ github.user }}
+          REPO_GITHUB_PASSWORD: ${{ secrets.REPO_GITHUB_PASSWORD }}
       - name: Publish package to GitHub & Nexus Packages
         if: ${{ github.event.inputs.github_nexus_package == '1' }}
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_GITHUB_URL: https://maven.pkg.github.com/davisusanibar/gradle-kts-artifacts
+          REPO_GITHUB_USERNAME: ${{ github.user }}
+          REPO_GITHUB_PASSWORD: ${{ secrets.REPO_GITHUB_PASSWORD }}
+          NEXUS_URL: https://f59f-191-97-56-158.ngrok.io/repository
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          NEXUS_INSECURE: false

@@ -22,11 +22,6 @@ cd "$worktree" || exit 1
 
 export GITHUB_REF="$branch"
 
-echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-echo "$PWD"
-
-ls "$PWD"
-
 npx --yes \
   -p semantic-release \
   -p "@semantic-release/commit-analyzer" \
